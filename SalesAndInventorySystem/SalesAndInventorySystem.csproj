@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200824154010_AddedSourcingEntities.cs" />
+    <Compile Remove="Migrations\20200824154010_AddedSourcingEntities.Designer.cs" />
+    <Compile Remove="Migrations\20200824160643_AddedSourcingEntities2.cs" />
+    <Compile Remove="Migrations\20200824160643_AddedSourcingEntities2.Designer.cs" />
+    <Compile Remove="Migrations\20200828055310_SourcingEntityModification-DatePostedNullable.cs" />
+    <Compile Remove="Migrations\20200828055310_SourcingEntityModification-DatePostedNullable.Designer.cs" />
+    <Compile Remove="Migrations\20200828093028_AddedSalesEntities1.cs" />
+    <Compile Remove="Migrations\20200828093028_AddedSalesEntities1.Designer.cs" />
+    <Compile Remove="Migrations\20200829082722_UpdatedItemStronglyDefinedPriceField.cs" />
+    <Compile Remove="Migrations\20200829082722_UpdatedItemStronglyDefinedPriceField.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Caliburn.Micro" Version="3.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ModernWpfUI" Version="0.9.1" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="connection.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

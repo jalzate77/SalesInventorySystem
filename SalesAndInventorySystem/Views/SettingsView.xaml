@@ -1,0 +1,98 @@
+﻿<ui:Page x:Class="SalesAndInventorySystem.Views.SettingsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SalesAndInventorySystem.Views"
+      xmlns:cal="http://www.caliburnproject.org"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SettingsView">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10">
+            <ui:CommandBar x:Name="PrimaryCommandBar">
+                <ui:AppBarButton cal:Message.Attach="[Event Click]=[Action Reload]" Icon="Sync" Label="Reload" />
+                <ui:AppBarButton cal:Message.Attach="[Event Click]=[Action Save]" x:Name="SaveButton" Icon="Save" Label="Save" />
+            </ui:CommandBar>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Auto Numbering">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="TextBox_KeyDown"
+                             Text="{Binding ActiveItem.AutoNumberDelimiter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             ui:ControlHelper.Header="Section Delimiter" ui:ControlHelper.PlaceholderText="Special character to separate sections"/>
+
+                    <TextBox Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"
+                             Text="{Binding ActiveItem.AutoNumberItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             ui:ControlHelper.Header="For Item Records" ui:ControlHelper.PlaceholderText="Item Id Auto Numbering Format"/>
+
+                    <TextBox Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top"
+                             Text="{Binding ActiveItem.AutoNumberSourcing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             ui:ControlHelper.Header="For Souring Records" ui:ControlHelper.PlaceholderText="Sourcing Id Auto Numbering Format"/>
+
+                    <TextBox Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top"
+                             Text="{Binding ActiveItem.AutoNumberSale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             ui:ControlHelper.Header="For Sales Records" ui:ControlHelper.PlaceholderText="Sales Id Auto Numbering Format"/>
+
+                    <ScrollViewer Grid.Row="4" Margin="0,10,0,0">
+                        <RichTextBox IsReadOnly="True" IsReadOnlyCaretVisible="False" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                            <FlowDocument>
+                                <Paragraph>
+                                    <Italic FontWeight="SemiBold" FontSize="16">What is Auto Numbering</Italic>
+                                    <LineBreak/>
+                                    The Auto Numbering feature is used to provide customizable record Id's for the sales and inventory entities.
+                                </Paragraph>
+                                <Paragraph>
+                                    <Italic FontWeight="SemiBold" FontSize="16">Using Auto Numbering</Italic>
+                                    <LineBreak/>
+                                    The auto number feature uses the format that is specified in the auto numbering fields above. You may only use letters and numbers. 
+                                    If you want to separate parts of the Auto number, press [Spacebar] to insert the single special character delimiter which can also be set above.
+                                    You may also add auto generated strings using the following keywords:
+                                </Paragraph>
+                                <Paragraph Margin="10,0,0,0">
+                                    <Bold>{date:[date format]}</Bold>
+                                    <LineBreak/>
+                                    - Current date with the provided format.
+                                    <LineBreak/>
+                                    Examples:  {date} will produce 20200101, {date:yyyymmdd} will produce 20200101, {date:yyyymmmdd} will produce 2020Jan01
+                                </Paragraph>
+                                <Paragraph Margin="10,0,0,0">
+                                    <Bold>{auto:[number of digits]}</Bold>
+                                    <LineBreak/>
+                                    - Auto numbering based on the previous record.
+                                    <LineBreak/>
+                                    Examples: {auto} will produce 1, {auto:####} will produce 0001
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </ScrollViewer>
+                </Grid>
+            </GroupBox>
+
+        </Grid>
+
+    </Grid>
+</ui:Page>

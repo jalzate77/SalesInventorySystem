@@ -1,0 +1,30 @@
+﻿<Application x:Class="SalesAndInventorySystem.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SalesAndInventorySystem"
+             xmlns:conv="clr-namespace:SalesAndInventorySystem.Converters"
+             xmlns:ui="http://schemas.modernwpf.com/2019">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ui:ThemeResources RequestedTheme="Dark" />
+                <ui:XamlControlsResources />
+
+                <ResourceDictionary>
+
+                    <local:MefBootstrapper x:Key="bootstrapper"/>
+
+                </ResourceDictionary>
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:BoolToYesNoConverter x:Key="BoolToYesNoConverter" />
+            <conv:ReverseBoolConverter x:Key="ReverseBoolConverter" />
+            <conv:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter"/>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
